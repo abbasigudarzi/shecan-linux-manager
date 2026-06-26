@@ -25,8 +25,11 @@ read -p "Choose: " choice
 
 case $choice in
   1)
-    sudo resolvectl dns "$IFACE" 178.22.122.101 185.51.200.1
-    echo "✅ Shecan DNS Enabled"
+    if sudo resolvectl dns "$IFACE" 178.22.122.100 185.51.200.2; then
+        echo "✅ Shecan DNS Enabled"
+    else
+        echo "❌ Failed to enable Shecan DNS"
+    fi
     ;;
 
   2)
@@ -41,7 +44,11 @@ case $choice in
     ;;
 
   4)
-    sudo resolvectl dns "$IFACE" 178.22.122.101 185.51.200.1
+    if sudo resolvectl dns "$IFACE" 178.22.122.100 185.51.200.2; then
+        echo "✅ Shecan DNS Enabled"
+    else
+        echo "❌ Failed to enable Shecan DNS"
+    fi
     curl "$UPDATE_LINK"
     echo "🚀 Shecan Enabled + IP Updated"
     ;;
